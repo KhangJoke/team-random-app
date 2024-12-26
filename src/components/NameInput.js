@@ -9,25 +9,24 @@ export default function NameInput({inputValue, nameList, setInputValue, setNameL
         setInputValue(e.target.value)
     }
 
-
-
     const handleRandomize = () => {
         if (!inputValue.trim()) {
             console.error("Input is empty! Please enter some names.");
             return;
         }
+
+
         const nameInputList = inputValue.split(/[\n,]+/).map((name) => name.trim()).filter((name) => name);
-        
-        setNameList([...nameInputList]);
-        
-        const shuffleList = [...nameList]
+        console.log(nameInputList)
         for (let i = 9; i > 0; i--) {
             const j = Math.floor(Math.random() * (1 + i));
-            [shuffleList[i], shuffleList[j]] = [shuffleList[j], shuffleList[i]]
+            [nameInputList[i], nameInputList[j]] = [nameInputList[j], nameInputList[i]]
         }
 
-        const team1 = shuffleList.slice(0, 5);
-        const team2 = shuffleList.slice(5);
+        console.log(nameInputList);
+
+        const team1 = nameInputList.slice(0, 5);
+        const team2 = nameInputList.slice(5);
         
         setTeam(team1, team2);
 

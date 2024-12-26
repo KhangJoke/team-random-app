@@ -10,14 +10,17 @@ function App() {
 
   const [team1, setTeam1] = useState(["Player1", "Player 2", "Player 3", "Player 4", "Player 5"]);
   const [team2, setTeam2] = useState(["Player1", "Player 2", "Player 3", "Player 4", "Player 5"]);
+  // const [team1, setTeam1] = useState([]);
+  // const [team2, setTeam2] = useState([]);
 
   const [inputValue, setInputValue] = useState("");
-  const [nameList, setNameList] = useState([]);
 
   const setTeam = useCallback((team1, team2) => {
-    setTeam1(team1);
-    setTeam2(team2);
+    setTeam1(prevTeam => [...team1]);
+    setTeam2(prevTeam => [...team2]);
   }, []);
+
+
 
 
     return (
@@ -40,7 +43,7 @@ function App() {
             {/* Input Field */}
             <div className="flex-1 bg-gray-100 text-center p-4">
               <h1>Name List</h1>
-              <NameInput inputValue = {inputValue} nameList = {nameList} setInputValue = {(e) => setInputValue(e)} setNameList = {(e) => setNameList(e)} setTeam = {(t1, t2) => setTeam(t1, t2)} />
+              <NameInput inputValue = {inputValue} setInputValue = {(e) => setInputValue(e)} setTeam = {(t1, t2) => setTeam(t1, t2)} />
             </div>
           </div>
         </Content>
